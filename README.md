@@ -34,8 +34,7 @@ RUN pip install -r requirements.txt # コマンド実行
 
 ### Compose実行のステップ
 
-1. `Dockerfile`を用意するか、`Docker Hub`などに置いてあるイメージを使用する
-   今回は、Dockerfileを使用します。
+1. `Dockerfile`を用意するか、`Docker Hub`などに置いてあるイメージを使用する。今回は、Dockerfileを使用します。
 2. `docker-compose.yml`を定義する
 3. `docker-compose up`を実行する
 
@@ -45,7 +44,7 @@ RUN pip install -r requirements.txt # コマンド実行
 version: '3.8'
 
 services:
-  flask: # サービス名。任意のもので構わない
+  flask: # コンテナのサービス名。任意のもので構わない
     build: . # 同じディレクトリにあるDockerfileで作成されるイメージを使用してコンテナを起動する
     volumes:
       - type: bind # bindマウント。ホスト側（source）とコンテナ側（target）でディレクトリを共有する
@@ -56,3 +55,10 @@ services:
     tty: true # コンテナ起動したままにする
 ```
 
+## flask起動して、Hello World!と表示されるか確認
+
+1. `docker-compose up`を実行してコンテナが立ち上がったら、コンテナの中に入る（vscodeを使用すると楽）。
+2. コンテナ内で、flask_appディレクトリに移動。
+3. `python hello.py`を実行して、flaskを起動。
+4. http://localhost:5000 にブラウザからアクセス
+5. Hello World! と表示されればOK
